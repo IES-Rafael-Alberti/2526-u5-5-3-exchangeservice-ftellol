@@ -405,6 +405,17 @@ Las preguntas están formuladas para que **mires tu propio código**, justifique
 
 Identifica **al menos 3 casos de prueba de tu batería** y explica:
 
+#### Caso de prueba 1 = "throws an exception when the amount is negative"
+* Qué **clase de equivalencia** cubre cada uno (válida o inválida).
+* Qué **condición concreta del servicio** estás validando (validación, tasa directa, conversión cruzada, etc.).
+* Por qué ese caso es representativo dentro del conjunto de pruebas.
+
+#### Caso de prueba 1 = "throws an exception when the amount is negative"
+* Qué **clase de equivalencia** cubre cada uno (válida o inválida).
+* Qué **condición concreta del servicio** estás validando (validación, tasa directa, conversión cruzada, etc.).
+* Por qué ese caso es representativo dentro del conjunto de pruebas.
+
+#### Caso de prueba 1 = "throws an exception when the amount is negative"
 * Qué **clase de equivalencia** cubre cada uno (válida o inválida).
 * Qué **condición concreta del servicio** estás validando (validación, tasa directa, conversión cruzada, etc.).
 * Por qué ese caso es representativo dentro del conjunto de pruebas.
