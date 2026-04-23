@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/Og7iRJ-r)
 # Mock, Stub o Spy en Kotlin
 
 Antes de empezar, recuerda que el objetivo es realizar la práctica aqui enlazada:
@@ -404,12 +405,42 @@ Las preguntas están formuladas para que **mires tu propio código**, justifique
 
 Identifica **al menos 3 casos de prueba de tu batería** y explica:
 
+#### Caso de prueba 1 = "throws an exception when the amount is negative"
+* Qué **clase de equivalencia** cubre cada uno (válida o inválida).
+* Qué **condición concreta del servicio** estás validando (validación, tasa directa, conversión cruzada, etc.).
+* Por qué ese caso es representativo dentro del conjunto de pruebas.
+
+#### Caso de prueba 1 = "throws an exception when the amount is negative"
+* Qué **clase de equivalencia** cubre cada uno (válida o inválida).
+* Qué **condición concreta del servicio** estás validando (validación, tasa directa, conversión cruzada, etc.).
+* Por qué ese caso es representativo dentro del conjunto de pruebas.
+
+#### Caso de prueba 1 = "throws an exception when the amount is negative"
 * Qué **clase de equivalencia** cubre cada uno (válida o inválida).
 * Qué **condición concreta del servicio** estás validando (validación, tasa directa, conversión cruzada, etc.).
 * Por qué ese caso es representativo dentro del conjunto de pruebas.
 
 Incluye enlaces a los tests correspondientes.
 
+**Respuesta:**
+
+#### Caso de prueba 1 = "throws an exception when the amount is negative"
+Permalink -> https://github.com/IES-Rafael-Alberti/2526-u5-5-3-exchangeservice-ftellol/blob/bea44ac03b81d47c633e5f2e56ecfe3cbe4d216a/src/test/kotlin/ExchangeServiceDesignedBatteryTest.kt#L37-L42
+* Qué **clase de equivalencia** cubre cada uno (válida o inválida): Inválida
+* Qué **condición concreta del servicio** estás validando (validación, tasa directa, conversión cruzada, etc.): Valida que el servicio rechaza cantidades negativas antes de seguir. El test comprueba el require amount > 0 del inicio
+* Por qué ese caso es representativo dentro del conjunto de pruebas: Ese necesario porque no tiene sentido pasar una cantidad negativa de dinero.
+
+#### Caso de prueba 2 = "Convierte correctamente usando una tasa directa con stub"
+Permalink -> https://github.com/IES-Rafael-Alberti/2526-u5-5-3-exchangeservice-ftellol/blob/bea44ac03b81d47c633e5f2e56ecfe3cbe4d216a/src/test/kotlin/ExchangeServiceDesignedBatteryTest.kt#L71-L80
+* Qué **clase de equivalencia** cubre cada uno (válida o inválida): Válida
+* Qué **condición concreta del servicio** estás validando (validación, tasa directa, conversión cruzada, etc.): Comprueba el camino más normal al pasar dinero. Es decir si paso 200 dolares, con una tasa de 0.92 serían 184.
+* Por qué ese caso es representativo dentro del conjunto de pruebas: Es importante porque es el caso mas normal. En caso de que falle es raro que lo demás vaya bien.
+
+#### Caso de prueba 1 = "lanza una excepción si no existe ninguna ruta válida"
+Permalink -> https://github.com/IES-Rafael-Alberti/2526-u5-5-3-exchangeservice-ftellol/blob/bea44ac03b81d47c633e5f2e56ecfe3cbe4d216a/src/test/kotlin/ExchangeServiceDesignedBatteryTest.kt#L126-L133
+* Qué **clase de equivalencia** cubre cada uno (válida o inválida): Inválida.
+* Qué **condición concreta del servicio** estás validando (validación, tasa directa, conversión cruzada, etc.): Valida que el servicio lance una excepcion en caso de que no haya alguna ruta dada.
+* Por qué ese caso es representativo dentro del conjunto de pruebas: Es importante porque también hay que cubrir los peores casos. Gracias a este test sabemos que lanzaria en caso de que todo falle.
 
 #### 🔹 2) CE f) Se han efectuado pruebas unitarias de clases y funciones
 
@@ -425,6 +456,15 @@ Justifica por qué este test cumple con el concepto de prueba unitaria según el
 
 Incluye enlace al test.
 
+**Respuesta:**
+
+- Estoy probando el método exchange(money: Money, targetCurrency: String): Long de ExchangeService.
+- En lugar de usar InMemoryExchangeRateProvider real, creo un mockk ExchangeRateProvider y le digo exactamente qué tiene que devolver. Asi ExchangeService no depende de nada.
+- Entrada: Money(200, "USD") y targetCurrency = "EUR".
+- Salida esperada: 184L.
+- Es una prueba unitaria porque prueba una sola cosa de una sola clase sin depender de otras implementaciones.
+- Permalink -> https://github.com/IES-Rafael-Alberti/2526-u5-5-3-exchangeservice-ftellol/blob/bea44ac03b81d47c633e5f2e56ecfe3cbe4d216a/src/test/kotlin/ExchangeServiceDesignedBatteryTest.kt#L75-L80
+
 
 #### 🔹 3) CE g) Se han implementado pruebas automáticas
 
@@ -432,7 +472,7 @@ Incluye enlace al test.
 
 Explica cómo se ejecuta tu batería de pruebas de forma automática:
 
-* Qué herramienta utilizas (Kotest, Gradle, etc.).
+* Qué herramienta utilizas (Kotest, Gradle, etc.)
 * Cómo se lanzan todas las pruebas sin intervención manual.
 * Qué evidencia tienes de que los tests verifican automáticamente el comportamiento del sistema (por ejemplo: assertions, fallos, etc.).
 
@@ -440,6 +480,13 @@ Incluye enlace a:
 
 * configuración (build.gradle.kts o similar)
 * ejecución de tests
+
+**Respuesta:**
+
+- Uso como lenguaje Kotlin y para correr los test hago uso de Kotest.
+- Las pruebas se lanzan directamente por la ayuda de IntellijIdea, el cual tiene el botón de "Run". El Ide invoca a Gradle automaticamente y empieza a correr los test.
+- Porque hago uso de shouldBe, shouldNotBe o shouldThrow. Entonces si la condición no se cumple lanza una excepción.
+- Ejemplo: https://github.com/IES-Rafael-Alberti/2526-u5-5-3-exchangeservice-ftellol/blob/bea44ac03b81d47c633e5f2e56ecfe3cbe4d216a/src/test/kotlin/ExchangeServiceDesignedBatteryTest.kt#L78
 
 
 #### 🔹 4) CE h) Se han documentado las incidencias detectadas
@@ -471,6 +518,20 @@ Relaciona tu explicación con la necesidad de reducir el acoplamiento en pruebas
 
 Incluye enlaces a los tests donde se utilicen.
 
+
+**Respuesta:**
+
+- Stub — convierte correctamente usando una tasa directa
+El stub simplemente devuelve un valor fijo cuando se le llama con ese par. No me importa si se llamó una vez, dos, o en qué orden ya que solo quiero comprobar que el cálculo es correcto.
+
+- Mock — llama al proveedor en el orden exacto: par directo y después los pares del cruce
+Necesito verificar que el servicio llama al proveedor en el orden correcto, es decir primero intenta el par directo, y solo si falla busca la ruta cruzada. Por eso uso verifySequence el cual comprueba llamadas ocurrieron exactamente en ese orden y que no hubo ninguna llamada extra.
+
+- Spy — devuelve la misma cantidad sin consultar el proveedor
+El spy envuelve al proveedor real (InMemoryExchangeRateProvider) para que funcione, pero me permite vigilarlo. Lo uso para confirmar que, cuando la moneda es la misma, el servicio funciona y devuelve el dinero sin llegar a consultar al proveedor ni una sola vez.
+
+- Qué problema tendrías si usaras directamente `InMemoryExchangeRateProvider` en todos los casos:
+El problema principal sería el acoplamiento. Ya que si InMemoryExchangeRateProvider cambia por ejemplo como lanza excepciones fallarian todos mis test y me resultaria dificil encontrar el fallo.
 
 ## Fuente conceptual
 
